@@ -5,7 +5,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c165648f-75fb-4eb2-a887-65c7ef729c64</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Assignment1.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,7 +23,19 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assignment1.py" />
+    <Compile Include="runHarris.py" />
+    <Compile Include="runJEPGcompress.py" />
+    <Compile Include="runRL.py" />
+    <Compile Include="runUnsharp.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="misc\corner_gray.png" />
+    <Content Include="misc\lena_gray.bmp" />
+    <Content Include="misc\psf.mat" />
+    <Content Include="misc\quantmatrix.mat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="misc\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
