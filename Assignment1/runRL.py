@@ -2,6 +2,7 @@ import scipy.io as sio
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
+from copy import deepcopy
 
 def rlDeconv(B, PSF):
     # TODO Implement rl_deconv function based on spec.
@@ -12,9 +13,10 @@ def rlDeconv(B, PSF):
     # Pad border to avoid artifacts
     I = np.pad(B, ((pad_w, pad_w), (pad_w, pad_w), (0,0)),'edge') 
 
+    I0 = deepcopy(I)
     for i in range(0, maxIters):
     	# TODO 
-    	
+        I = np.multiply(I, cv2.filter2D(np.divide(I0, cv2.filter2D(I, -1, PSF)), -1, cv2.flip(PSF, -1)))
 
     I = I[pad_w : -pad_w, pad_w : -pad_w]
 
@@ -48,5 +50,3 @@ if __name__ == '__main__':
     plt.imshow(I)
     plt.show()
 
-    
-	
