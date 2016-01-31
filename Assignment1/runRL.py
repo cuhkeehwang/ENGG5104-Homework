@@ -7,7 +7,7 @@ from copy import deepcopy
 def rlDeconv(B, PSF):
     # TODO Implement rl_deconv function based on spec.
     # Change based on your experiment
-    maxIters = 25; 	
+    maxIters = 50; 	
 
     pad_w = 30
     # Pad border to avoid artifacts
@@ -49,4 +49,3 @@ if __name__ == '__main__':
     #   cv2.waitKey(0)
     plt.imshow(I)
     plt.show()
-
