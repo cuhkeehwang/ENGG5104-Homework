@@ -8,14 +8,27 @@ def harrisdetector(image, k, t):
     # Return corner points x-coordinates in result[0] and y-coordinates in result[1]
     ptr_x = []
     ptr_y = []
+    img = image.astype('double')
+    Ix = cv2.filter2D(img, -1, np.array((-1, 1)))
+    Iy = cv2.filter2D(img, -1, np.array(((-1, 1),)))
+    w = np.ones((2*k+1, 2*k+1))
+    Ixx = cv2.filter2D(np.multiply(Ix, Ix), -1, w)
+    Ixy = cv2.filter2D(np.multiply(Ix, Iy), -1, w)
+    Iyy = cv2.filter2D(np.multiply(Iy, Iy), -1, w)
     
+    for i in range(k, np.size(image, 0) - k):
+        for j in range(k, np.size(image, 1) - k):
+            _, eig, _ = cv2.eigen(np.array(((Ixx[i,j,0], Ixy[i,j,0]), (Ixy[i,j,0], Iyy[i,j,0]))))
+            if all(eig > t):
+                ptr_x += [j]
+                ptr_y += [i]
 
     result = [ptr_x, ptr_y]
     return result
 
 if __name__ == '__main__':
     k = 2       # change to your value
-    t = 2e6     # change to your value
+    t = 23456     # change to your value
 
     I = cv2.imread('./misc/corner_gray.png')
 
