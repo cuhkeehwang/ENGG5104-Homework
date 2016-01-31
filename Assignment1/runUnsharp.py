@@ -4,11 +4,12 @@ import cv2
 from matplotlib import pyplot as plt
 
 def unSharpmask(im, K, A):
-    # TODO Write "unsharp masking" function based on the illustration in specification.
+    # TODO Write "unsharp masking" function based on the illustration in
+    # specification.
     # Return sharpened result image
-    result =
-    return result
-
+    I = im.astype('double')
+    result = (A - 1) * I + cv2.filter2D(I, -1, K)
+    return cv2.convertScaleAbs(np.maximum(0,result))
 
 if __name__ == '__main__':
     im = cv2.imread('./misc/lena_gray.bmp')
@@ -17,8 +18,8 @@ if __name__ == '__main__':
 
     result = unSharpmask(im, k, A)
     # Show result, OpenCV is BGR-channel, matplotlib is RGB-channel
-    # Or: 
+    # Or:
     #   cv2.imshow('output',result)
     #   cv2.waitKey(0)
-    plt.imshow(result);
+    plt.imshow(result)
     plt.show()
